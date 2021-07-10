@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function WeatherDetails() {
+    let href=""
   return (
     <div className="row">
       <div className="col-sm-4">
@@ -30,11 +31,11 @@ export default function WeatherDetails() {
         <div className="temp">
           <strong id="showTemperature">21</strong>
           <span class="units">
-            <a href="/" id="celsius" className="active">
+            <a href={href} id="celsius" className="active">
               Cº
             </a>{" "}
             |{" "}
-            <a href="/" id="fahrenheit">
+            <a href={href} id="fahrenheit">
               Fº
             </a>
           </span>
