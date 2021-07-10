@@ -2,6 +2,10 @@ import React from "react";
 import "./Weather.css";
 import WeatherDetails from "./WeatherDetails.js";
 import TimeAndDate from "./TimeAndDate.js"
+import Forecast from "./Forecast";
+import "./TimeAndDate.css";
+import "./WeatherDetails.css";
+import "./Forecast.css"
 
 export default function Weather(){
     return (
@@ -19,6 +23,7 @@ export default function Weather(){
                     <hr />
                     <TimeAndDate />
                     <WeatherDetails />
+                    <Forecast />
                 </div>
             </div>
         </div>

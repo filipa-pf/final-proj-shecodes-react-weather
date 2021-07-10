@@ -1,0 +1,13 @@
+.TimeAndDate h2 {
+  font-size: 13px;
+  color: rgba(119, 108, 108, 0.534);
+}
+
+.TimeAndDate h3 {
+  font-size: 32px;
+  color: rgba(119, 108, 108, 0.534);
+}
+
+.TimeAndDate {
+  padding: 10px;
+}

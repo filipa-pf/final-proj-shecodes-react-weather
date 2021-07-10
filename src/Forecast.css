@@ -1,0 +1,22 @@
+.weather-forecast-max {
+  color: #4b4e50;
+  font-size: 11px;
+}
+
+.weather-forecast-min {
+  color: #868b8f;
+  font-size: 11px;
+}
+
+#icon-forecast {
+  max-width: 50px;
+}
+
+.week-day {
+  font-size: 11px !important;
+}
+
+p.forecast {
+  text-align: left;
+  color: #4b4e50;
+}
