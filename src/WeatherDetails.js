@@ -30,11 +30,11 @@ export default function WeatherDetails() {
         <div className="temp">
           <strong id="showTemperature">21</strong>
           <span class="units">
-            <a href="#" id="celsius" className="active">
+            <a href="/" id="celsius" className="active">
               Cº
             </a>{" "}
             |{" "}
-            <a href="#" id="fahrenheit">
+            <a href="/" id="fahrenheit">
               Fº
             </a>
           </span>
