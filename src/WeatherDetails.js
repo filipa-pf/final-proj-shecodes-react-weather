@@ -1,6 +1,10 @@
 import React from "react";
+import axios from "axios";
 
 export default function WeatherDetails() {
+    const apiKey = "bcd6bffb67c533bc97521b927a7799b4";
+    let city = "London"
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     let href=""
   return (
     <div className="row">
