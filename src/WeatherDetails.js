@@ -3,20 +3,19 @@ import axios from "axios";
 
 export default function WeatherDetails() {
   const apiKey = "bcd6bffb67c533bc97521b927a7799b4";
-  const [ready, setReady] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
     setWeatherData({
-      temperature: response.data.main.temp,
+      ready: true,
+      temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       condition: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed * 3.6),
     });
-    setReady(true);
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     let href = "";
     return (
       <div className="row">
