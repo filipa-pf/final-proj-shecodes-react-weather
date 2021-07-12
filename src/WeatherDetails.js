@@ -4,11 +4,16 @@ import axios from "axios";
 export default function WeatherDetails() {
   const apiKey = "bcd6bffb67c533bc97521b927a7799b4";
   const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
+  const [weatherData, setWeatherData] = useState({});
 
-  function handleResponse(response){
-      setTemperature(Math.round(response.data.main.temp));
-      setReady(true);
+  function handleResponse(response) {
+    setWeatherData({
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      condition: response.data.weather[0].description,
+      windSpeed: Math.round(response.data.wind.speed * 3.6),
+    });
+    setReady(true);
   }
 
   if (ready) {
@@ -40,7 +45,7 @@ export default function WeatherDetails() {
         </div>
         <div className="col-sm-4 temp-info">
           <div className="temp">
-            <strong id="showTemperature">{temperature}</strong>
+            <strong id="showTemperature">{weatherData.temperature}</strong>
             <span class="units">
               <a href={href} id="celsius" className="active">
                 Cº
@@ -52,14 +57,14 @@ export default function WeatherDetails() {
             </span>
             <ul className="details">
               <li>
-                Humidity: <span id="humidity">12</span>%
+                Humidity: <span id="humidity">{weatherData.humidity}</span>%
               </li>
 
               <li>
-                Condition: <span id="condition">Clear</span>
+                Condition: <span id="condition">{weatherData.condition}</span>
               </li>
               <li>
-                Wind speed: <span id="wind">12</span> km/h
+                Wind speed: <span id="wind">{weatherData.windSpeed}</span> km/h
               </li>
             </ul>
           </div>
