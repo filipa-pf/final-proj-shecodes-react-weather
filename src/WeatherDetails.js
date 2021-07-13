@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import TimeAndDate from "./TimeAndDate.js"
 
-export default function WeatherDetails() {
-  const apiKey = "bcd6bffb67c533bc97521b927a7799b4";
+export default function WeatherDetails(props) {
+  const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
@@ -12,12 +13,14 @@ export default function WeatherDetails() {
       humidity: response.data.main.humidity,
       condition: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed * 3.6),
+      date: new Date(response.data.dt * 1000),
     });
   }
 
   if (weatherData.ready) {
     let href = "";
-    return (
+    return ( <div>
+    <TimeAndDate date={weatherData.date}/>
       <div className="row">
         <div className="col-sm-4">
           <form id="searched-city">
@@ -45,7 +48,7 @@ export default function WeatherDetails() {
         <div className="col-sm-4 temp-info">
           <div className="temp">
             <strong id="showTemperature">{weatherData.temperature}</strong>
-            <span class="units">
+            <span className="units">
               <a href={href} id="celsius" className="active">
                 Cº
               </a>{" "}
@@ -69,10 +72,11 @@ export default function WeatherDetails() {
           </div>
         </div>
       </div>
+      </div>
     );
   } else {
-    let city = "London";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
   }
