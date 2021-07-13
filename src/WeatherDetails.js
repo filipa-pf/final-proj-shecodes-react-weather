@@ -30,6 +30,7 @@ export default function WeatherDetails(props) {
       humidity: response.data.main.humidity,
       condition: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed * 3.6),
+      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       date: new Date(response.data.dt * 1000),
       city: response.data.name
     });
@@ -79,7 +80,7 @@ export default function WeatherDetails(props) {
           </div>
           <div className="col-sm-4">
             <img
-              src="http://openweathermap.org/img/wn/10d@2x.png"
+            src={weatherData.iconUrl}
               alt="weather-symbol"
               id="icon"
             />
