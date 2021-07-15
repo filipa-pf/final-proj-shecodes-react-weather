@@ -34,17 +34,12 @@
   padding: 0;
 }
 
-.temp .active {
-  color: #5c6268;
-  cursor: default;
-}
-
-.temp .active:hover {
-  text-decoration: none;
-}
-
 .units {
   position: relative;
   bottom: 27px;
   font-size: 12px;
+}
+
+span a {
+  text-decoration: none;
 }

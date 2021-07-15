@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import TimeAndDate from "./TimeAndDate.js";
 import "./TimeAndDate.css";
+import WeatherTemperature from "./WeatherTemperature"
+
 
 export default function WeatherDetails(props) {
   
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  
 
   function search() {
     const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
@@ -36,8 +39,9 @@ export default function WeatherDetails(props) {
     });
   }
 
+  
   if (weatherData.ready) {
-    let href = "";
+    
     return (
       <div>
         <form id="city-form" onSubmit={handleSubmit}>
@@ -87,16 +91,10 @@ export default function WeatherDetails(props) {
           </div>
           <div className="col-sm-4 temp-info">
             <div className="temp">
+                <div>
               <strong id="showTemperature">{weatherData.temperature}</strong>
-              <span className="units">
-                <a href={href} id="celsius" className="active">
-                  Cº
-                </a>{" "}
-                |{" "}
-                <a href={href} id="fahrenheit">
-                  Fº
-                </a>
-              </span>
+              <WeatherTemperature celsius={weatherData.temperature}/>
+              </div>
               <ul className="details">
                 <li>
                   Humidity: <span id="humidity">{weatherData.humidity}</span>%
