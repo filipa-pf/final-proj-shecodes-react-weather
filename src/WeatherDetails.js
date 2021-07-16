@@ -43,7 +43,7 @@ export default function WeatherDetails(props) {
   if (weatherData.ready) {
     
     return (
-      <div>
+      <div className="WeatherDetails">
         <form id="city-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="lbl-color">Enter City</label>
@@ -71,15 +71,7 @@ export default function WeatherDetails(props) {
               <span className="col city" id="placeInPage">
                 {weatherData.city}
               </span>
-              <div>
-                <button
-                  type="submit"
-                  className="btn btn-light detailed-btn btn2"
-                  id="btn2"
-                >
-                  Check your city!
-                </button>
-              </div>
+             
             </form>
           </div>
           <div className="col-sm-4">

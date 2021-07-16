@@ -43,3 +43,7 @@
 span a {
   text-decoration: none;
 }
+
+.WeatherDetails {
+  margin: 50px;
+}
