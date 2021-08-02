@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import TimeAndDate from "./TimeAndDate.js";
 import "./TimeAndDate.css";
-import WeatherTemperature from "./WeatherTemperature"
-
+import WeatherTemperature from "./WeatherTemperature";
+import "./Forecast.css";
+import Forecast from "./Forecast";
 
 export default function WeatherDetails(props) {
-  
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
-  
 
   function search() {
     const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
@@ -29,19 +28,18 @@ export default function WeatherDetails(props) {
   function handleResponse(response) {
     setWeatherData({
       ready: true,
+      coord: response.data.coord,
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       condition: response.data.weather[0].description,
       windSpeed: Math.round(response.data.wind.speed * 3.6),
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       date: new Date(response.data.dt * 1000),
-      city: response.data.name
+      city: response.data.name,
     });
   }
 
-  
   if (weatherData.ready) {
-    
     return (
       <div className="WeatherDetails">
         <form id="city-form" onSubmit={handleSubmit}>
@@ -71,21 +69,16 @@ export default function WeatherDetails(props) {
               <span className="col city" id="placeInPage">
                 {weatherData.city}
               </span>
-             
             </form>
           </div>
           <div className="col-sm-4">
-            <img
-            src={weatherData.iconUrl}
-              alt="weather-symbol"
-              id="icon"
-            />
+            <img src={weatherData.iconUrl} alt="weather-symbol" id="icon" />
           </div>
           <div className="col-sm-4 temp-info">
             <div className="temp">
-                <div>
-              <strong id="showTemperature">{weatherData.temperature}</strong>
-              <WeatherTemperature celsius={weatherData.temperature}/>
+              <div>
+                <strong id="showTemperature">{weatherData.temperature}</strong>
+                <WeatherTemperature celsius={weatherData.temperature} />
               </div>
               <ul className="details">
                 <li>
@@ -102,11 +95,15 @@ export default function WeatherDetails(props) {
               </ul>
             </div>
           </div>
+
+          <Forecast coordinates={weatherData.coord} />
+      
+          
         </div>
       </div>
     );
   } else {
-    search()
+    search();
     return "Loading...";
   }
 }

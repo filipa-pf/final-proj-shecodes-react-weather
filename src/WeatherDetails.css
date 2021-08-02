@@ -47,3 +47,6 @@ span a {
 .WeatherDetails {
   margin: 50px;
 }
+.WeatherForecast {
+  text-align: center;
+}
