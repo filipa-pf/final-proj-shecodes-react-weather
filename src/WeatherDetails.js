@@ -4,14 +4,18 @@ import TimeAndDate from "./TimeAndDate.js";
 import "./TimeAndDate.css";
 import WeatherTemperature from "./WeatherTemperature";
 
+
 export default function WeatherDetails(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [weatherForecastData, setWeatherForecastData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
   function search() {
     const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
+    axios.get(apiUrlForecast).then(handleResponseForecast);
   }
 
   function handleSubmit(event) {
@@ -34,6 +38,17 @@ export default function WeatherDetails(props) {
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       date: new Date(response.data.dt * 1000),
       city: response.data.name,
+    });
+  }
+
+
+  function handleResponseForecast(response) {
+    setWeatherForecastData({
+      coord: response.data.coord,
+      temperatureMax: Math.round(response.list.temp.max),
+      temperatureMin: Math.round(response.list.temp.min),
+      iconUrlForecast: `http://openweathermap.org/img/wn/${response.list.weather[0].icon}@2x.png`,
+      weekDay: response.list.temp.day,
     });
   }
 
@@ -93,8 +108,21 @@ export default function WeatherDetails(props) {
               </ul>
             </div>
           </div>
-
-        
+          <div className="WeatherForecast">
+            <div className="row">
+              <div className="col">
+                <div className="WeatherForecast-day">
+                  {weatherForecastData.weekDay}
+                </div>
+                <div>
+                  <img className="WeatherForecast-icon" src={weatherForecastData.iconUrlForecast} alt="weather-symbol" id="icon" />
+                </div>
+                <div className="WeatherForecast-temperatures">
+                  <span className="WeatherForecast-temperature-min">{weatherForecastData.temperatureMin}º </span><span className="WeatherForecast-temperature-max">{weatherForecastData.temperatureMin}º</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

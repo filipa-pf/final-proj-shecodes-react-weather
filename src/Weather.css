@@ -35,3 +35,13 @@
   margin: 10px auto;
   max-width: 30%;
 }
+.WeatherForecast-temperature-min {
+  color: #5c6268;
+  font-size: 14px;
+}
+.WeatherForecast-temperature-max {
+  font-size: 14px;
+}
+.WeatherForecast-icon {
+  max-width: 50px;
+}
