@@ -3,12 +3,15 @@ import axios from "axios";
 import TimeAndDate from "./TimeAndDate.js";
 import "./TimeAndDate.css";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 
 export default function WeatherDetails(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [weatherForecastData, setWeatherForecastData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [forecastDay, setForecastDay] = useState();
+ 
 
   function search() {
     const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
@@ -38,17 +41,17 @@ export default function WeatherDetails(props) {
       iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       date: new Date(response.data.dt * 1000),
       city: response.data.name,
-    });
+    })
+    setForecastDay(response.data.daily);
   }
 
 
   function handleResponseForecast(response) {
     setWeatherForecastData({
-      coord: response.data.coord,
       temperatureMax: Math.round(response.list.temp.max),
       temperatureMin: Math.round(response.list.temp.min),
       iconUrlForecast: `http://openweathermap.org/img/wn/${response.list.weather[0].icon}@2x.png`,
-      weekDay: response.list.temp.day,
+      
     });
   }
 
@@ -112,7 +115,7 @@ export default function WeatherDetails(props) {
             <div className="row">
               <div className="col">
                 <div className="WeatherForecast-day">
-                  {weatherForecastData.weekDay}
+                  <WeatherForecastDay data={forecastDay} />
                 </div>
                 <div>
                   <img className="WeatherForecast-icon" src={weatherForecastData.iconUrlForecast} alt="weather-symbol" id="icon" />
