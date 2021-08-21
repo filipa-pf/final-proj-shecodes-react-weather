@@ -4,7 +4,7 @@ import WeatherDetails from "./WeatherDetails.js";
 
 
 import "./WeatherDetails.css";
-import "./Forecast.css"
+
 
 
 export default function Weather(){
