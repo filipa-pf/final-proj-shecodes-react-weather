@@ -9,15 +9,13 @@
 .card-img {
   background: radial-gradient(
     circle at 7.5% 24%,
-    rgb(215, 248, 247) 0%,
-    rgb(190, 228, 210) 25.5%,
-    rgb(250, 178, 172) 62.3%,
-    rgb(237, 161, 193) 93.8%
+    rgb(183, 228, 226) 0%,
+    rgb(153, 196, 176) 25.5%,
+    rgb(245, 166, 158) 62.3%,
+    rgb(192, 127, 154) 93.8%
   );
 }
-.card {
-  text-align: center;
-}
+
 
 .detailed-btn {
   margin: 10px;
@@ -44,4 +42,15 @@
 }
 .WeatherForecast-icon {
   max-width: 50px;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+.weather-unit {
+position: relative;
+top: -10px;
+
 }

@@ -16,7 +16,7 @@ export default function WeatherDetails(props) {
   function search() {
     const apiKey = "f954ae778b55e3491e6dfa10c0b00af8";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    let apiUrlForecast = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${apiKey}`;
+    let apiUrlForecast = `https://api.openweathermap.org/data/3.0/`;
     axios.get(apiUrl).then(handleResponse);
     axios.get(apiUrlForecast).then(handleResponseForecast);
   }
@@ -51,7 +51,7 @@ export default function WeatherDetails(props) {
       temperatureMax: Math.round(response.list.temp.max),
       temperatureMin: Math.round(response.list.temp.min),
       iconUrlForecast: `http://openweathermap.org/img/wn/${response.list.weather[0].icon}@2x.png`,
-      
+     
     });
   }
 
@@ -111,7 +111,7 @@ export default function WeatherDetails(props) {
               </ul>
             </div>
           </div>
-          <div className="WeatherForecast">
+          {/* <div className="WeatherForecast">
             <div className="row">
               <div className="col">
                 <div className="WeatherForecast-day">
@@ -125,7 +125,7 @@ export default function WeatherDetails(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     );
