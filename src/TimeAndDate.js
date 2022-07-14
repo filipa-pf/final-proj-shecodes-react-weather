@@ -28,9 +28,9 @@ export default function TimeAndDate(props) {
     hours = `0${hours}`;
   }
   return (
-    <div className="TimeAndDate">
-      <h2>{day}, {props.date.getDate()} {month}</h2>
-      <h3>{hours}:{minutes}</h3>
+    <div className="TimeAndDate px-0 my-0">
+      <p className="text-white fs-5 fw-bold">{day}, {props.date.getDate()} {month}</p>
+      <p className="text-white">{hours}:{minutes}</p>
     </div>
   );
 }
